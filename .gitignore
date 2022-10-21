@@ -1,0 +1,9 @@
+/nbprojects/
+/assets/
+/css/
+/themes/
+/js/
+/.idea/
+/images/
+*.properties
+*.log
