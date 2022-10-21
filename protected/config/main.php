@@ -16,6 +16,10 @@ return array(
         ),
     ),
     'components' => array(
+        'authManager' => array(
+            'class' => 'PhpAuthManager',
+            'defaultRoles' => array('guest')
+        ),
         'user' => array(
             'class' => 'WebUser',
             'loginUrl' => 'auth/login',
