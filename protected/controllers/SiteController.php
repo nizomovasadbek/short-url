@@ -12,7 +12,8 @@ class SiteController extends Controller {
             $this->render('guest');
             Yii::app()->end();
         }
-        
+        $user = User::model()->findByPk(Yii::app()->user->id);
+        $this->render('user', ['user' => $user]);
     }
 
 }
