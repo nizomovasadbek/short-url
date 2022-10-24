@@ -20,12 +20,10 @@ return array(
             'class' => 'PhpAuthManager',
             'defaultRoles' => array('guest')
         ),
-        
         'JWT' => [
             'class' => 'ext.jwt.JWT',
             'secret' => 'my_secret_key'
         ],
-        
         'user' => array(
             'class' => 'WebUser',
             'loginUrl' => 'auth/login',
@@ -35,9 +33,9 @@ return array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
-                '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
+                '<controller:\w+>/<url:\w+>' => '<controller>/view',
             ),
         ),
         'db' => require(dirname(__FILE__) . '/database.php'),

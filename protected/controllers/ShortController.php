@@ -10,4 +10,17 @@ class ShortController extends Controller {
         Yii::app()->end();
     }
 
+    public function actionView($url) {
+        
+    }
+
+    public function actionNew() {
+        $model = new CreateUrlForm();
+
+        
+        
+        $this->render('new', ['model' => $model]);
+        Yii::app()->end();
+    }
+
 }
