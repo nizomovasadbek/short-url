@@ -3,6 +3,7 @@
 return array(
     'basePath' => dirname(__FILE__) . DIRECTORY_SEPARATOR . '..',
     'name' => 'URL Shortener',
+    'timeZone' => 'Asia/Tashkent',
     'preload' => array('log'),
     'import' => array(
         'application.models.*',
@@ -26,16 +27,17 @@ return array(
         ],
         'user' => array(
             'class' => 'WebUser',
-            'loginUrl' => 'auth/login',
+            'loginUrl' => '/auth/login',
             'allowAutoLogin' => true,
         ),
         'urlManager' => array(
             'urlFormat' => 'path',
             'showScriptName' => false,
             'rules' => array(
+                '<controller:\w+>/<id:\d+>' => '<controller>/view',
+                'short/<url:\w+>' => 'short/view',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
-                '<controller:\w+>/<url:\w+>' => '<controller>/view',
             ),
         ),
         'db' => require(dirname(__FILE__) . '/database.php'),
