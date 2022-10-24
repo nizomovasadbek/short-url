@@ -3,6 +3,9 @@
 class SiteController extends Controller {
 
     public function actionError() {
+        if (!Yii::app()->user->isGuest) {
+            Yii::app()->user->changeLastActivity();
+        }
         $this->render('error');
         Yii::app()->end();
     }
