@@ -20,6 +20,7 @@ class AuthController extends Controller {
         $model = new LoginForm();
         $user = new User();
 
+        //TODO
 
         $this->render('login', ['model' => $model]);
         Yii::app()->end();
