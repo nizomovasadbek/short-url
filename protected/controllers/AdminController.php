@@ -22,6 +22,7 @@ class AdminController extends Controller {
     }
 
     public function actionIndex() {
+        Yii::app()->user->changeLastActivity();
         $users = User::model()->findAll();
         $this->render('index', ['users' => $users]);
         Yii::app()->end();
