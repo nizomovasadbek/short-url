@@ -16,7 +16,7 @@ class AdminController extends Controller {
                 'roles' => array('admin')
             ),
             array('deny',
-                'users' => array('*')
+                'users' => ['*']
             )
         );
     }
