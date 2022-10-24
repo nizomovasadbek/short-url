@@ -20,6 +20,12 @@ return array(
             'class' => 'PhpAuthManager',
             'defaultRoles' => array('guest')
         ),
+        
+        'JWT' => [
+            'class' => 'ext.jwt.JWT',
+            'secret' => 'my_secret_key'
+        ],
+        
         'user' => array(
             'class' => 'WebUser',
             'loginUrl' => 'auth/login',
