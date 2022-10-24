@@ -42,6 +42,10 @@ class ShortController extends Controller {
         $short_url = 'https://' . $_SERVER['HTTP_HOST'] . '/short/' . $url;
         $criteria->compare('short_url', $short_url);
         $link = Link::model()->find($criteria);
+        if ($link === null) {
+            $this->redirect('/site/error');
+            Yii::app()->end();
+        }
         $redirect_url = $link->url;
         $this->redirect($redirect_url);
         Yii::app()->end();
