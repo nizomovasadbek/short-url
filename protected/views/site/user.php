@@ -2,7 +2,7 @@ Hello <?php echo $user->username; ?>
 <p>
     <a href="/short">
         New
-    </a>
+    </a><br>
     <a href="/my">
         My links
     </a>

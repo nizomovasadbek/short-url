@@ -6,7 +6,7 @@ class ShortController extends Controller {
         $datas = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $randStr = '';
 
-        for ($i = 0; $i < 10; $i++) {
+        for ($i = 0; $i < 12; $i++) {
             $randStr .= $datas[rand(0, strlen($datas))];
         }
 
