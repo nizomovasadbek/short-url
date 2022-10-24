@@ -3,8 +3,11 @@
 class ShortController extends Controller {
 
     public function actionIndex() {
-        echo 'test';
-        die;
+        if (!Yii::app()->user->isGuest) {
+            Yii::app()->user->changeLastActivity();
+        }
+        $this->redirect('/');
+        Yii::app()->end();
     }
 
 }
