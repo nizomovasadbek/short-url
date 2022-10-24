@@ -1,6 +1,6 @@
 Hello <?php echo $user->username; ?>
 <p>
-    <a href="/short/new">
+    <a href="/short">
         New
     </a>
 </p>
