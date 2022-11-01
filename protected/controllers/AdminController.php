@@ -32,7 +32,9 @@ class AdminController extends Controller {
         $criteria = new CDbCriteria();
         $criteria->compare('user_id', $user->id);
         $link = Link::model()->findAll($criteria);
-        $link->deleteAll();
+        foreach($link as $l){
+            $l->delete();
+        }
         $user->delete();
     }
 
