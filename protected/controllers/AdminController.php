@@ -3,20 +3,17 @@
 class AdminController extends Controller {
 
     public function filters() {
-        return array(
-            'accessControl'
-        );
+        return array('accessControl');
     }
 
     public function accessRules() {
         return array(
-            array(
-                'allow',
+            array('allow',
                 'actions' => array('index'),
                 'roles' => array('admin')
             ),
             array('deny',
-                'users' => ['*']
+                'users' => array('*')
             )
         );
     }
