@@ -9,7 +9,7 @@ class AdminController extends Controller {
     }
 
     public function accessRules() {
-        [
+        return [
                 ['allow',
                 'actions' => ['index', 'delete'],
                 'roles' => ['admin']
@@ -21,7 +21,6 @@ class AdminController extends Controller {
     }
 
     public function actionIndex() {
-        //admin rules
         Yii::app()->user->changeLastActivity();
         $users = User::model()->findAll();
         $this->render('index', ['users' => $users]);
@@ -33,9 +32,7 @@ class AdminController extends Controller {
         $criteria = new CDbCriteria();
         $criteria->compare('user_id', $user->id);
         $link = Link::model()->findAll($criteria);
-        foreach ($link as $l) {
-            $l->delete();
-        }
+        
         $user->delete();
     }
 
