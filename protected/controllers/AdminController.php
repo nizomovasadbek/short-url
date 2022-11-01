@@ -11,7 +11,7 @@ class AdminController extends Controller {
     public function accessRules() {
         return [
                 ['allow',
-                'actions' => ['index', 'delete'],
+                'actions' => ['index', 'delete', 'update'],
                 'roles' => ['admin']
             ],
                 ['deny',
@@ -28,12 +28,49 @@ class AdminController extends Controller {
     }
 
     public function actionDelete($id) {
-        $user = User::model()->findByPk(Yii::app()->user->id);
+        $user = User::model()->findByPk($id);
+        if ($user === null) {
+            echo "User not found";
+            Yii::app()->end();
+        }
         $criteria = new CDbCriteria();
         $criteria->compare('user_id', $user->id);
         $link = Link::model()->findAll($criteria);
-        $link->deleteAll();
+        if ($link === null) {
+            echo "given specific user didn't create any short urls";
+            Yii::app()->end();
+        }
+        foreach ($link as $l) {
+            $l->delete();
+        }
         $user->delete();
+    }
+
+    public function actionUpdate($id) {
+        $user = User::model()->findByPk($id);
+        if ($user === null) {
+            echo "User not found";
+            Yii::app()->end();
+        }
+        $model = new UpdateUserForm();
+
+        if (isset($_POST['UpdateUserForm'])) {
+            $model->attributes = $_POST['UpdateUserForm'];
+            if ($model->validate()) {
+                if ($model->role == 1) {
+                    $user->role = 'admin';
+                } else if ($model->role == 2) {
+                    $user->role = 'user';
+                }
+                $user->update_time = date('Y-m-d H:i:s');
+            }
+            $user->saveAttributes(['role', 'update_time']);
+            $this->redirect('/admin');
+            Yii::app()->end();
+        }
+
+        $this->render('update', ['model' => $model]);
+        Yii::app()->end();
     }
 
 }
