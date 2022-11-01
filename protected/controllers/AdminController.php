@@ -29,9 +29,17 @@ class AdminController extends Controller {
 
     public function actionDelete($id) {
         $user = User::model()->findByPk($id);
+        if ($user === null) {
+            echo "User not found";
+            Yii::app()->end();
+        }
         $criteria = new CDbCriteria();
         $criteria->compare('user_id', $user->id);
         $link = Link::model()->findAll($criteria);
+        if ($link === null) {
+            echo "given specific user didn't create any short urls";
+            Yii::app()->end();
+        }
         foreach ($link as $l) {
             $l->delete();
         }
@@ -40,6 +48,10 @@ class AdminController extends Controller {
 
     public function actionUpdate($id) {
         $user = User::model()->findByPk($id);
+        if ($user === null) {
+            echo "User not found";
+            Yii::app()->end();
+        }
         $model = new UpdateUserForm();
 
         if (isset($_POST['UpdateUserForm'])) {
