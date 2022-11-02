@@ -1,4 +1,4 @@
-<h1>Update user role</h1>
+<h1>Update <?php echo $user->username; ?> role</h1>
 <div class="form">
 
     <?php echo CHtml::beginForm(); ?>
@@ -9,7 +9,7 @@
         <?php echo CHtml::dropDownList('role', '', ['admin', 'user']); ?>
     </div>
 
-    <div class="row">
+    <div class="row submit">
         <?php echo CHtml::submitButton('Update'); ?>
     </div>
 
