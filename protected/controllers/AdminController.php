@@ -74,11 +74,7 @@ class AdminController extends Controller {
         if (isset($_POST['UpdateUserForm'])) {
             $model->attributes = $_POST['UpdateUserForm'];
             if ($model->validate()) {
-                if ($model->role == 1) {
-                    $user->role = 'admin';
-                } else if ($model->role == 2) {
-                    $user->role = 'user';
-                }
+                $user->role = $model->role;
                 $user->update_time = date('Y-m-d H:i:s');
             }
             $user->saveAttributes(['role', 'update_time']);
