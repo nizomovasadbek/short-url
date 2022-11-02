@@ -1,8 +1,19 @@
 <?php
 
-foreach($users as $user) {
-    echo '<pre>';
-    print_r($user);
-    echo '</pre>';
+foreach($users as $user) { ?>
+
+<table>
+    <tr>
+        <th>
+            <?php echo $user->username; ?>
+        </th>
+        <th>
+            <?php echo $user->role; ?>
+        </th>
+        <th>
+            <?php echo $user->last_activity; ?>
+        </th>
+    </tr>
+</table>
     
-}
+ <?php  } ?>
