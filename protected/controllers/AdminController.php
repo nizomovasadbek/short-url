@@ -20,6 +20,17 @@ class AdminController extends Controller {
         ];
     }
 
+    public function actionShow($id) {
+        $user = User::model()->findByPk($id);
+        Yii::app()->user->changeLastActivity();
+        if ($user === null) {
+            $this->redirect('/admin');
+            Yii::app()->end();
+        }
+        $this->render('show', ['user' => $user]);
+        Yii::app()->end();
+    }
+
     public function actionIndex() {
         Yii::app()->user->changeLastActivity();
         $users = User::model()->findAll();

@@ -1,8 +1,19 @@
+<table>
+    <tr>
+        <th>
+            Username
+        </th>
+        <th>
+            Role
+        </th>
+        <th>
+            Last Activity
+        </th>
+    </tr>
 <?php
 
 foreach($users as $user) { ?>
 
-<table>
     <tr>
         <th>
             <?php echo $user->username; ?>
@@ -14,6 +25,6 @@ foreach($users as $user) { ?>
             <?php echo $user->last_activity; ?>
         </th>
     </tr>
-</table>
     
  <?php  } ?>
+</table>
