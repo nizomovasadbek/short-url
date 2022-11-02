@@ -33,15 +33,19 @@ class AuthController extends Controller {
 
         $model = new LoginForm();
         $user = new User();
+        $duration = 0;
 
         if (isset($_POST['LoginForm'])) {
             $model->attributes = $_POST['LoginForm'];
             if ($model->validate()) {
+                if ($model->rememberMe) {
+                    $duration = 3600 * 24 * 7; //1 hafta
+                }
                 $user->username = $model->username;
                 $user->password = md5($model->password);
                 $this->iden = new UserIdentity($user->username, $user->password);
                 if ($this->iden->authenticate()) {
-                    Yii::app()->user->login($this->iden);
+                    Yii::app()->user->login($this->iden, $duration);
                     $user = User::model()->findByPk(Yii::app()->user->id);
                     Yii::app()->user->changeLastActivity();
                 }
@@ -63,10 +67,14 @@ class AuthController extends Controller {
 
         $model = new RegisterForm();
         $user = new User();
+        $duration = 0;
 
         if (isset($_POST['RegisterForm'])) {
             $model->attributes = $_POST['RegisterForm'];
             if ($model->validate()) {
+                if ($model->rememberMe) {
+                    $duration = 3600 * 24 * 7;
+                }
                 $user->username = $model->username;
                 $user->password = $model->password;
                 $user->role = 'user';
@@ -74,7 +82,7 @@ class AuthController extends Controller {
                 if ($user->save()) {
                     $this->iden = new UserIdentity($user->username, $user->password);
                     if ($this->iden->authenticate()) {
-                        Yii::app()->user->login($this->iden);
+                        Yii::app()->user->login($this->iden, $duration);
                     }
                     $this->redirect('/');
                     Yii::app()->end();
