@@ -4,7 +4,7 @@
     <?php echo CHtml::beginForm(); ?>
     <?php echo CHtml::errorSummary($model); ?>
     
-    <div class="row"> <comment></comment>
+    <div class="row">
         <?php echo CHtml::activeLabel($model, 'Role'); ?>
         <?php echo CHtml::dropDownList($model, 'role', [1=>'admin', 2=>'user']); ?>
     </div>
