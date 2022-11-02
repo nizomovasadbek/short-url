@@ -59,6 +59,8 @@ class AdminController extends Controller {
             $l->delete();
         }
         $user->delete();
+        $this->redirect('/admin');
+        Yii::app()->end();
     }
 
     public function actionUpdate($id) {

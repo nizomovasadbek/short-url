@@ -16,7 +16,7 @@ foreach($users as $user) { ?>
 
     <tr>
         <th>
-            <?php echo $user->username; ?>
+            <a href="/admin/show/<?php echo $user->id; ?>"><?php echo $user->username; ?></a>
         </th>
         <th>
             <?php echo $user->role; ?>

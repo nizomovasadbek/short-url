@@ -39,8 +39,6 @@ return array(
             'rules' => array(
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 'short/<url:\w+>' => 'short/view',
-                'admin/delete/<id:\d+>' => 'admin/delete',
-                'admin/update/<id:\d+>' => 'admin/update',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),
