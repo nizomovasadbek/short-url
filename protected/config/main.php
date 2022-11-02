@@ -17,6 +17,9 @@ return array(
         ),
     ),
     'components' => array(
+        'request' => array(
+            'enableCsrfValidation' => true
+        ),
         'authManager' => array(
             'class' => 'PhpAuthManager',
             'defaultRoles' => array('guest')
