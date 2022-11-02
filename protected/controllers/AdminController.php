@@ -27,11 +27,14 @@ class AdminController extends Controller {
             Yii::app()->end();
         }
         $user = User::model()->findByPk($id);
+        $criteria = new CDbCriteria();
+        $criteria->compare('user_id', $user->id);
+        $links_that_belongs_to_user = Link::model()->findAll($criteria);
         if ($user === null) {
             $this->redirect('/admin');
             Yii::app()->end();
         }
-        $this->render('show', ['user' => $user]);
+        $this->render('show', ['user' => $user, 'links' => $links_that_belongs_to_user]);
         Yii::app()->end();
     }
 
