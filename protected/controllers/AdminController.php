@@ -74,15 +74,19 @@ class AdminController extends Controller {
         if (isset($_POST['UpdateUserForm'])) {
             $model->attributes = $_POST['UpdateUserForm'];
             if ($model->validate()) {
-                $user->role = $model->role;
-                $user->update_time = date('Y-m-d H:i:s');
+                if ($model->role == 0) {
+                    $user->role = 'admin';
+                } else if ($model->role == 1) {
+                    $user->role = 'user';
+                }
             }
+            $user->update_time = date('Y-m-d H:i:s');
             $user->saveAttributes(['role', 'update_time']);
             $this->redirect('/admin');
             Yii::app()->end();
         }
 
-        $this->render('update', ['model' => $model]);
+        $this->render('update', ['model' => $model, 'user' => $user]);
         Yii::app()->end();
     }
 
