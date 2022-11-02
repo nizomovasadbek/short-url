@@ -5,7 +5,8 @@ class UpdateUserForm extends CFormModel {
     
     public function rules(){
         return array(
-            array('role', 'safe', 'on'=>'search')
+            array('role', 'safe', 'on'=>'search'),
+            array('role', 'length', 'max' => 20)
         );
     }
 }
