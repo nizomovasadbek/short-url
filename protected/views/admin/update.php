@@ -6,7 +6,7 @@
     
     <div class="row"> <comment></comment>
         <?php echo CHtml::activeLabel($model, 'Role'); ?>
-        <?php echo CHtml::dropDownList('role', '', [1=>'admin', 2=>'user']); ?>
+        <?php echo CHtml::dropDownList($model, 'role', [1=>'admin', 2=>'user']); ?>
     </div>
     
     <div class="row">

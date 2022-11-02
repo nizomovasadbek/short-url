@@ -3,7 +3,7 @@
 <div class="span-19">
 	<div id="content">
 		<?php echo $content; ?>
-	</div><!-- content -->
+	</div>
 </div>
 <div class="span-5 last">
 	<div id="sidebar">
@@ -17,6 +17,6 @@
 		));
 		$this->endWidget();
 	?>
-	</div><!-- sidebar -->
+	</div>
 </div>
 <?php $this->endContent(); ?>
