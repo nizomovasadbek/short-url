@@ -11,7 +11,7 @@ class AdminController extends Controller {
     public function accessRules() {
         return [
                 ['allow',
-                'actions' => ['index', 'delete', 'update'],
+                'actions' => ['index', 'delete', 'update', 'show'],
                 'roles' => ['admin']
             ],
                 ['deny',
@@ -21,8 +21,12 @@ class AdminController extends Controller {
     }
 
     public function actionShow($id) {
-        $user = User::model()->findByPk($id);
         Yii::app()->user->changeLastActivity();
+        if (Yii::app()->user->id == $id) {
+            echo "You can't delete yourself:)";
+            Yii::app()->end();
+        }
+        $user = User::model()->findByPk($id);
         if ($user === null) {
             $this->redirect('/admin');
             Yii::app()->end();
