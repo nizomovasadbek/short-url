@@ -94,10 +94,15 @@ class AdminController extends Controller {
     }
 
     public function actionImport() {
+        $user = User::model()->findByPk(Yii::app()->user->id);
+        if($user === null){
+            $this->redirect('/');
+            Yii::app()->end();
+        }
         define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
-        Yii::import('application.extensions.phpexcel.Classes.*');
         $obj_php_excel = new PHPExcel();
-        
+        $obj_php_excel->setActiveSheetIndex(0)
+            ->getCell
         
         
         echo 'successfully imported';
