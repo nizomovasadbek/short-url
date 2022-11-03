@@ -67,4 +67,15 @@ class MyController extends Controller {
         Yii::app()->end();
     }
 
+    public function actionShow($id){
+        $link = Link::model()->findByPk($id);
+        $arr = [
+            'id' => $link->id,
+            'url' => $link->url,
+            'short_url' => $link->short_url
+        ];
+        echo json_encode($arr);
+        Yii::app()->end();
+    }
+
 }
