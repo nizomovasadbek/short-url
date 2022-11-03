@@ -4,6 +4,8 @@
 /js/
 /.idea/
 /images/
+*.xls
+*.xlsx
 *.properties
 *.log
 *.bin

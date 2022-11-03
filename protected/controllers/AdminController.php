@@ -115,26 +115,23 @@ class AdminController extends Controller {
                 ->setCellValue('C1', 'Last activity')
                 ->setCellValue('D1', 'Role');
 
-        $criteria = new CDbCriteria();
-        $criteria->condition = "id != :id";
-        $criteria->params = array(
-            ':id' => $user->id
-        );
-        $users = User::model()->findAll($criteria);
-        $index = 0;
-        foreach($users as $coord=>$all){
+        $users = User::model()->findAll();
+        $coord = 2;
+        foreach($users as $all){
             $obj_php_excel->getActiveSheet()
                     ->setCellValue("A{$coord}", $all->id)
                     ->setCellValue("B{$coord}", $all->username)
                     ->setCellValue("C{$coord}", $all->last_activity)
                     ->setCellValue("D{$coord}", $all->role);
+            echo "Wrote to ABCD at index {$coord}<br>";
+            $coord++;
         }
 
         $obj_php_excel->getActiveSheet()->setTitle('Shorturl users');
         $obj_php_excel->setActiveSheetIndex(0);
         //write in Excel 2007 format
         $objWriter = PHPExcel_IOFactory::createWriter($obj_php_excel, 'Excel2007');
-        $objWriter->save(str_replace('.php', '.xlsx', '/../../result.php'));
+        $objWriter->save(str_replace('.php', '.xlsx', __DIR__ . '/../../upload/result.php'));
 
         echo 'successfully imported';
         Yii::app()->end();
