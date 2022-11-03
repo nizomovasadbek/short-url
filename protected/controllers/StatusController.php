@@ -28,16 +28,16 @@ class StatusController extends Controller {
         Yii::app()->end();
     }
 
-    public function actionDownload($name) {
+    public function actionDownload($url) {
         $user = User::model()->findByPk(Yii::app()->user->id);
         $criteria = new CDbCriteria();
         $criteria->compare('user_id', $user->id);
-        $criteria->compare('name', $name);
+        $criteria->compare('name', $url);
         $criteria->order = 'create_time DESC';
         $file = File::model()->find($criteria);
         $filePath = $file->path;
         if (!file_exists($filePath)) {
-            echo "{$file->name} doesn't exist or deleted<br>";
+            echo "File doesn't exist or deleted<br>";
             Yii::app()->end();
         }
         Yii::app()->getRequest()->sendFile("report.xlsx", @file_get_contents($filePath));
