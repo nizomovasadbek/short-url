@@ -123,7 +123,6 @@ class AdminController extends Controller {
                     ->setCellValue("B{$coord}", $all->username)
                     ->setCellValue("C{$coord}", $all->last_activity)
                     ->setCellValue("D{$coord}", $all->role);
-            echo "Wrote to ABCD at index {$coord}<br>";
             $coord++;
         }
 
@@ -131,9 +130,10 @@ class AdminController extends Controller {
         $obj_php_excel->setActiveSheetIndex(0);
         //write in Excel 2007 format
         $objWriter = PHPExcel_IOFactory::createWriter($obj_php_excel, 'Excel2007');
-        $objWriter->save(str_replace('.php', '.xlsx', __DIR__ . '/../../upload/result.php'));
-
-        echo 'successfully imported';
+        $fileName = Yii::app()->random->getRandomString();
+        $objWriter->save(str_replace('.php', '.xlsx', __DIR__ . "/../../upload/{$fileName}.php"));
+        $filePath = __DIR__ . "/../../upload/{$fileName}.xlsx";
+        $this->render('import', ['filePath' => $filePath]);
         Yii::app()->end();
     }
 
