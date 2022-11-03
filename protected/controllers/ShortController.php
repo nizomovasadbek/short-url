@@ -2,17 +2,6 @@
 
 class ShortController extends Controller {
 
-    private function getRandomString() {
-        $datas = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-        $randStr = '';
-
-        for ($i = 0; $i < 12; $i++) {
-            $randStr .= $datas[rand(0, strlen($datas))];
-        }
-
-        return $randStr;
-    }
-
     public function filters() {
         return array(
             'accessControl'
@@ -61,7 +50,7 @@ class ShortController extends Controller {
             $model->attributes = $_POST['CreateUrlForm'];
             $link->url = $model->url;
             $link->user_id = $user->id;
-            $short_url = 'https://' . $_SERVER['HTTP_HOST'] . '/short/' . $this->getRandomString();
+            $short_url = 'https://' . $_SERVER['HTTP_HOST'] . '/short/' . Yii::app()->randstr->getRandomString();
             $link->short_url = $short_url;
             $link->create_time = $link->update_time = date('Y-m-d H:i:s');
             if ($link->save()) {

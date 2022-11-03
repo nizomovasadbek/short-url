@@ -29,6 +29,7 @@ class StatusController extends Controller {
     }
 
     public function actionDownload($url) {
+        Yii::app()->user->changeLastActivity();
         $user = User::model()->findByPk(Yii::app()->user->id);
         $criteria = new CDbCriteria();
         $criteria->compare('user_id', $user->id);
