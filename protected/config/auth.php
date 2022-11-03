@@ -25,5 +25,16 @@ return [
         ],
         'bizRule' => null,
         'data' => null
+    ],
+    'super' => [
+        'type' => CAuthItem::TYPE_ROLE,
+        'description' => 'Super',
+        'children' => [
+            'admin',
+            'user',
+            'guest'
+        ],
+        'bizRule' => null,
+        'data' => null
     ]
 ];

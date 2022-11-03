@@ -78,4 +78,10 @@ class User extends CActiveRecord
 	{
 		return parent::model($className);
 	}
+
+	public function beforeSave(){
+		$this->password = md5($this->password);
+		return parent::beforeSave();
+	}
+
 }

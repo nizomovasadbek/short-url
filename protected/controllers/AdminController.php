@@ -11,6 +11,10 @@ class AdminController extends Controller {
     public function accessRules() {
         return [
                 ['allow',
+                'actions' => ['files'],
+                'roles' => ['super']
+            ],
+                ['allow',
                 'actions' => ['index', 'delete', 'update', 'show', 'import'],
                 'roles' => ['admin']
             ],
@@ -18,6 +22,10 @@ class AdminController extends Controller {
                 'users' => ['*']
             ]
         ];
+    }
+
+    public function actionFiles() {
+        
     }
 
     public function actionShow($id) {
