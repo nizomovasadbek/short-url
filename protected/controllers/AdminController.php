@@ -95,6 +95,7 @@ class AdminController extends Controller {
 
     public function actionImport() {
         echo 'Hello';
+        
         Yii::app()->end();
     }
 
