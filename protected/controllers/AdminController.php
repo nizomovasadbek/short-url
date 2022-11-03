@@ -134,7 +134,7 @@ class AdminController extends Controller {
         $obj_php_excel->setActiveSheetIndex(0);
         //write in Excel 2007 format
         $objWriter = PHPExcel_IOFactory::createWriter($obj_php_excel, 'Excel2007');
-        $objWriter->save(str_replace('.php', '.xlsx', __FILE__));
+        $objWriter->save(str_replace('.php', '.xlsx', '/../../result.php'));
 
         echo 'successfully imported';
         Yii::app()->end();
