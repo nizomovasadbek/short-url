@@ -5,6 +5,10 @@ class AdminController extends Controller {
     private function checkOut($user_id1, $user_id2) {
         $user1 = User::model()->findByPk($user_id1);
         $user2 = User::model()->findByPk($user_id2);
+        if ($user1 === null || $user2 === null) {
+            echo "User with specific ID doesn't exist<br>";
+            Yii::app()->end();
+        }
         if ($user1->role == 'admin' && $user2->role == 'admin') {
             echo "You can't do update <b>{$user1->username}</b>";
             Yii::app()->end();
