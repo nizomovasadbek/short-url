@@ -17,6 +17,9 @@ return array(
         ),
     ),
     'components' => array(
+        'import' => array(
+            'application.extensions.phpexcel.Classes.*'
+        ),
         'request' => array(
             'enableCsrfValidation' => true
         ),

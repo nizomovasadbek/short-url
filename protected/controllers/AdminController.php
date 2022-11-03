@@ -95,7 +95,13 @@ class AdminController extends Controller {
 
     public function actionImport() {
         define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+        Yii::import('application.extensions.phpexcel.Classes.*');
+        $obj_php_excel = new PHPExcel();
         
+        
+        
+        echo 'successfully imported';
+        Yii::app()->end();
     }
 
 }
