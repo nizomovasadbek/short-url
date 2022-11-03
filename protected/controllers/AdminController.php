@@ -95,16 +95,46 @@ class AdminController extends Controller {
 
     public function actionImport() {
         $user = User::model()->findByPk(Yii::app()->user->id);
-        if($user === null){
+        if ($user === null) {
             $this->redirect('/');
             Yii::app()->end();
         }
-        define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
+        Yii::app()->user->changeLastActivity();
         $obj_php_excel = new PHPExcel();
+        $obj_php_excel->getProperties()->setCreator("Shorturl (C)")
+                ->setLastModifiedBy('Shorturl (C)')
+                ->setTitle('Users\' data')
+                ->setSubject("Informations about Users")
+                ->setDescription("Excel file downloaded by {$user->username}")
+                ->setKeywords('Office')
+                ->setCategory('Datas about users');
         $obj_php_excel->setActiveSheetIndex(0)
-            ->getCell
-        
-        
+                ->setCellValue('A1', 'Id')
+                ->setCellValue('B1', 'Username')
+                ->setCellValue('C1', 'Last activity')
+                ->setCellValue('D1', 'Role');
+
+        $criteria = new CDbCriteria();
+        $criteria->condition = "id != :id";
+        $criteria->params = array(
+            ':id' => $user->id
+        );
+        $users = User::model()->findAll($criteria);
+        $index = 0;
+        foreach($users as $coord=>$all){
+            $obj_php_excel->getActiveSheet()
+                    ->setCellValue("A{$coord}", $all->id)
+                    ->setCellValue("B{$coord}", $all->username)
+                    ->setCellValue("C{$coord}", $all->last_activity)
+                    ->setCellValue("D{$coord}", $all->role);
+        }
+
+        $obj_php_excel->getActiveSheet()->setTitle('Shorturl users');
+        $obj_php_excel->setActiveSheetIndex(0);
+        //write in Excel 2007 format
+        $objWriter = PHPExcel_IOFactory::createWriter($obj_php_excel, 'Excel2007');
+        $objWriter->save(str_replace('.php', '.xlsx', __FILE__));
+
         echo 'successfully imported';
         Yii::app()->end();
     }
