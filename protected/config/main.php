@@ -19,7 +19,7 @@ return array(
     'components' => array(
         'qrcode' => array(
             'class' => 'ext.qrcode.QRCode'
-        )
+        ),
         'randstr' => array(
             'class' => 'ext.randstr.GeneratorString'
         ),
