@@ -132,7 +132,7 @@ class AdminController extends Controller {
         //write in Excel 2007 format
         $objWriter = PHPExcel_IOFactory::createWriter($obj_php_excel, 'Excel2007');
         $fileName = Yii::app()->randstr->getRandomString(32);
-        $objWriter->save(str_replace('.php', '.xlsx', __DIR__ . "/../../upload/{$fileName}.php"));
+        $objWriter->save(__DIR__ . "/../../upload/{$fileName}.xlsx");
         $filePath = __DIR__ . "/../../upload/{$fileName}.xlsx";
         $file = new File();
         $file->name = $fileName;
