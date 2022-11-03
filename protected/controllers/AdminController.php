@@ -94,9 +94,8 @@ class AdminController extends Controller {
     }
 
     public function actionImport() {
-        echo 'Hello';
+        define('EOL', (PHP_SAPI == 'cli') ? PHP_EOL : '<br />');
         
-        Yii::app()->end();
     }
 
 }
