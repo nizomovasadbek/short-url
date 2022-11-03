@@ -11,7 +11,7 @@ class AdminController extends Controller {
     public function accessRules() {
         return [
                 ['allow',
-                'actions' => ['index', 'delete', 'update', 'show'],
+                'actions' => ['index', 'delete', 'update', 'show', 'import'],
                 'roles' => ['admin']
             ],
                 ['deny',
@@ -90,6 +90,11 @@ class AdminController extends Controller {
         }
 
         $this->render('update', ['model' => $model, 'user' => $user]);
+        Yii::app()->end();
+    }
+
+    public function actionImport() {
+        echo 'Hello';
         Yii::app()->end();
     }
 
