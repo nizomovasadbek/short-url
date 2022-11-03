@@ -31,9 +31,6 @@ return array(
             'class' => 'ext.jwt.JWT',
             'secret' => 'my_secret_key'
         ],
-        'PHPExcel' => [
-            'class' => 'ext.phpexcel.Classes.PHPExcel'
-        ],
         'user' => array(
             'class' => 'WebUser',
             'loginUrl' => '/auth/login',
