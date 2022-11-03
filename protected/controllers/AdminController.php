@@ -2,6 +2,15 @@
 
 class AdminController extends Controller {
 
+    private function checkOut($user_id1, $user_id2) {
+        $user1 = User::model()->findByPk($user_id1);
+        $user2 = User::model()->findByPk($user_id2);
+        if ($user1->role == 'admin' && $user2->role == 'admin') {
+            echo "You can't do update <b>{$user1->username}</b>";
+            Yii::app()->end();
+        }
+    }
+
     public function filters() {
         return [
             'accessControl'
@@ -35,6 +44,9 @@ class AdminController extends Controller {
             Yii::app()->end();
         }
         $user = User::model()->findByPk($id);
+
+        $this->checkOut($id, Yii::app()->user->id);
+
         $criteria = new CDbCriteria();
         $criteria->compare('user_id', $user->id);
         $links_that_belongs_to_user = Link::model()->findAll($criteria);
@@ -49,17 +61,17 @@ class AdminController extends Controller {
     public function actionIndex() {
         Yii::app()->user->changeLastActivity();
         $criteria = new CDbCriteria();
-        if(Yii::app()->user->role == 'admin'){
-            $criteria->compare('role', 'user');
-            $criteria->compare('role', 'admin');
+        if (Yii::app()->user->role == 'admin') {
+            $criteria->condition = "role = 'user' or role = 'admin'";
         }
-        $users = User::model()->findAll();
+        $users = User::model()->findAll($criteria);
         $this->render('index', ['users' => $users]);
         Yii::app()->end();
     }
 
     public function actionDelete($id) {
         Yii::app()->user->changeLastActivity();
+        $this->checkOut($id, Yii::app()->user->id);
         $user = User::model()->findByPk($id);
         if ($user === null) {
             echo "User not found";
@@ -81,6 +93,8 @@ class AdminController extends Controller {
     }
 
     public function actionUpdate($id) {
+        Yii::app()->user->changeLastActivity();
+        $this->checkOut($id, Yii::app()->user->id);
         $user = User::model()->findByPk($id);
         if ($user === null) {
             echo "User not found";
@@ -130,7 +144,11 @@ class AdminController extends Controller {
                 ->setCellValue('C1', 'Last activity')
                 ->setCellValue('D1', 'Role');
 
-        $users = User::model()->findAll();
+        $criteria = new CDbCriteria();
+        if (Yii::app()->user->role == 'admin') {
+            $criteria->condition = "role = 'user' or role = 'admin'";
+        }
+        $users = User::model()->findAll($criteria);
         $coord = 2;
         foreach ($users as $all) {
             $obj_php_excel->getActiveSheet()
