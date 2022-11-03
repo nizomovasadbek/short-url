@@ -13,7 +13,7 @@ class StatusController extends Controller {
                 [
                 'allow',
                 'actions' => ['index', 'download'],
-                'roles' => ['admin']
+                'roles' => ['user']
             ],
                 [
                 'deny',

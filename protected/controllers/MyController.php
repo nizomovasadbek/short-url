@@ -20,7 +20,14 @@ class MyController extends Controller {
         ];
     }
 
-    private function createExcelFile($links){
+    public function actionIndex() {
+        Yii::import('application.extensions.phpexcel.Classes.*');
+        Yii::app()->user->changeLastActivity();
+        $user = User::model()->findByPk(Yii::app()->user->id);
+        $criteria = new CDbCriteria();
+        $criteria->compare('user_id', $user->id);
+        $links = Link::model()->findAll($criteria);
+
         $obj = new PHPExcel();
         $obj->getProperties()->setCreator('Shorturl (C)')
             ->setLastModifiedBy('Shorturl')
@@ -55,17 +62,8 @@ class MyController extends Controller {
         $file->user_id = Yii::app()->user->id;
         $file->save();
         $objWriter->save($file->path);
-        $this->render('import', ['fileName' => $fileName]);
-        Yii::app()->end();
-    }
 
-    public function actionIndex() {
-        Yii::app()->user->changeLastActivity();
-        $user = User::model()->findByPk(Yii::app()->user->id);
-        $criteria = new CDbCriteria();
-        $criteria->compare('user_id', $user->id);
-        $links = Link::model()->findAll($criteria);
-        $this->render('index', ['links'=>$links]);
+        $this->render('index', ['links'=>$links, 'fileName' => $fileName]);
         Yii::app()->end();
     }
 

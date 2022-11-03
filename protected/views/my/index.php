@@ -5,4 +5,4 @@ foreach ($links as $link) {
 }
 ?>
 
-<a href="">Download excel file</a>
+<a href="/status/download/<?php echo $fileName; ?>">Download excel file</a>
