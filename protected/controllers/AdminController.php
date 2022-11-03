@@ -94,6 +94,7 @@ class AdminController extends Controller {
     }
 
     public function actionImport() {
+        Yii::import('application.extensions.phpexcel.Classes.PHPExcel');
         $user = User::model()->findByPk(Yii::app()->user->id);
         if ($user === null) {
             $this->redirect('/');
