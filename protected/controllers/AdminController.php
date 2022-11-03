@@ -11,7 +11,7 @@ class AdminController extends Controller {
     public function accessRules() {
         return [
                 ['allow',
-                'actions' => ['index', 'delete', 'update', 'show'],
+                'actions' => ['index', 'delete', 'update', 'show', 'import'],
                 'roles' => ['admin']
             ],
                 ['deny',
@@ -90,6 +90,50 @@ class AdminController extends Controller {
         }
 
         $this->render('update', ['model' => $model, 'user' => $user]);
+        Yii::app()->end();
+    }
+
+    public function actionImport() {
+        Yii::import('application.extensions.phpexcel.Classes.PHPExcel');
+        $user = User::model()->findByPk(Yii::app()->user->id);
+        if ($user === null) {
+            $this->redirect('/');
+            Yii::app()->end();
+        }
+        Yii::app()->user->changeLastActivity();
+        $obj_php_excel = new PHPExcel();
+        $obj_php_excel->getProperties()->setCreator("Shorturl (C)")
+                ->setLastModifiedBy('Shorturl (C)')
+                ->setTitle('Users\' data')
+                ->setSubject("Informations about Users")
+                ->setDescription("Excel file downloaded by {$user->username}")
+                ->setKeywords('Office')
+                ->setCategory('Datas about users');
+        $obj_php_excel->setActiveSheetIndex(0)
+                ->setCellValue('A1', 'Id')
+                ->setCellValue('B1', 'Username')
+                ->setCellValue('C1', 'Last activity')
+                ->setCellValue('D1', 'Role');
+
+        $users = User::model()->findAll();
+        $coord = 2;
+        foreach($users as $all){
+            $obj_php_excel->getActiveSheet()
+                    ->setCellValue("A{$coord}", $all->id)
+                    ->setCellValue("B{$coord}", $all->username)
+                    ->setCellValue("C{$coord}", $all->last_activity)
+                    ->setCellValue("D{$coord}", $all->role);
+            echo "Wrote to ABCD at index {$coord}<br>";
+            $coord++;
+        }
+
+        $obj_php_excel->getActiveSheet()->setTitle('Shorturl users');
+        $obj_php_excel->setActiveSheetIndex(0);
+        //write in Excel 2007 format
+        $objWriter = PHPExcel_IOFactory::createWriter($obj_php_excel, 'Excel2007');
+        $objWriter->save(str_replace('.php', '.xlsx', __DIR__ . '/../../upload/result.php'));
+
+        echo 'successfully imported';
         Yii::app()->end();
     }
 

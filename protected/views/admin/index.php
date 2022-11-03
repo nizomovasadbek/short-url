@@ -28,3 +28,7 @@ foreach($users as $user) { ?>
     
  <?php  } ?>
 </table>
+
+<p>
+    <a href="/admin/import">Import table</a>
+</p>
