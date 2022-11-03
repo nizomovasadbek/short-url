@@ -42,6 +42,7 @@ return array(
             'rules' => array(
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 'short/<url:\w+>' => 'short/view',
+                'status/download/<url:\w+>' => 'status/download',
                 '<controller:\w+>/<action:\w+>/<id:\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
             ),

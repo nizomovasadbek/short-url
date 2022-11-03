@@ -117,7 +117,7 @@ class AdminController extends Controller {
 
         $users = User::model()->findAll();
         $coord = 2;
-        foreach($users as $all){
+        foreach ($users as $all) {
             $obj_php_excel->getActiveSheet()
                     ->setCellValue("A{$coord}", $all->id)
                     ->setCellValue("B{$coord}", $all->username)
@@ -133,7 +133,13 @@ class AdminController extends Controller {
         $fileName = Yii::app()->randstr->getRandomString(32);
         $objWriter->save(str_replace('.php', '.xlsx', __DIR__ . "/../../upload/{$fileName}.php"));
         $filePath = __DIR__ . "/../../upload/{$fileName}.xlsx";
-        $this->render('import', ['filePath' => $filePath]);
+        $file = new File();
+        $file->name = $fileName;
+        $file->create_time = $file->update_time = date('Y-m-d H:i:s');
+        $file->path = $filePath;
+        $file->user_id = $user->id;
+        $file->save();
+        $this->render('import', ['fileName' => $fileName]);
         Yii::app()->end();
     }
 
