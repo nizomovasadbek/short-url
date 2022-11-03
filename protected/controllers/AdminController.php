@@ -130,7 +130,7 @@ class AdminController extends Controller {
         $obj_php_excel->setActiveSheetIndex(0);
         //write in Excel 2007 format
         $objWriter = PHPExcel_IOFactory::createWriter($obj_php_excel, 'Excel2007');
-        $fileName = Yii::app()->random->getRandomString();
+        $fileName = Yii::app()->randstr->getRandomString(32);
         $objWriter->save(str_replace('.php', '.xlsx', __DIR__ . "/../../upload/{$fileName}.php"));
         $filePath = __DIR__ . "/../../upload/{$fileName}.xlsx";
         $this->render('import', ['filePath' => $filePath]);

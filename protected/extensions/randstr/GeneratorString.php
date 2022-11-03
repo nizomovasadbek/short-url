@@ -1,7 +1,11 @@
 <?php
 
-class Generator {
+class GeneratorString {
     
+    public function init(){
+        
+    }
+
     public function getRandomString($len = 12){
         $randomCharacters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $str = '';

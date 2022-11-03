@@ -17,8 +17,8 @@ return array(
         ),
     ),
     'components' => array(
-        'random' => array(
-            'class' => 'ext.randstr.Generator'
+        'randstr' => array(
+            'class' => 'ext.randstr.GeneratorString'
         ),
         'request' => array(
             'enableCsrfValidation' => true
