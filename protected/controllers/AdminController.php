@@ -48,12 +48,18 @@ class AdminController extends Controller {
 
     public function actionIndex() {
         Yii::app()->user->changeLastActivity();
+        $criteria = new CDbCriteria();
+        if(Yii::app()->user->role == 'admin'){
+            $criteria->compare('role', 'user');
+            $criteria->compare('role', 'admin');
+        }
         $users = User::model()->findAll();
         $this->render('index', ['users' => $users]);
         Yii::app()->end();
     }
 
     public function actionDelete($id) {
+        Yii::app()->user->changeLastActivity();
         $user = User::model()->findByPk($id);
         if ($user === null) {
             echo "User not found";

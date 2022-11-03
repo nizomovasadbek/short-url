@@ -10,7 +10,7 @@ Hello <?php echo $user->username; ?>
 <p>
     <br>
     <?php
-        if(Yii::app()->user->role == 'admin'){
+        if(Yii::app()->user->role == 'admin' || Yii::app()->user->role == 'super'){
             echo '<a href="/admin">Admin panel</a>';
         }
     ?>
