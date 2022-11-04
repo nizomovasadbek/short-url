@@ -1,10 +1,10 @@
 Hello <?php echo $user->username; ?>
 <p>
     <a href="/short">
-        New
+        <?php echo Yii::t("translation", "new"); ?>
     </a><br>
     <a href="/my">
-        My links
+        <?php echo Yii::t("translation", "my_links"); ?>
     </a>
 </p>
 <p>
@@ -17,6 +17,6 @@ Hello <?php echo $user->username; ?>
 </p>
 <p>
     <a href="/auth/logout">
-        Logout
+        <?php echo Yii::t("translation", "logout"); ?>
     </a>
 </p>

@@ -6,7 +6,7 @@ class AdminController extends Controller {
         $user1 = User::model()->findByPk($user_id1);
         $user2 = User::model()->findByPk($user_id2);
         if ($user1 === null || $user2 === null) {
-            echo "User with specific ID doesn't exist<br>";
+            echo Yii::t("translation", "user_is_not_exist") . '<br>';
             Yii::app()->end();
         }
         if ($user1->role == 'admin' && $user2->role == 'admin') {
