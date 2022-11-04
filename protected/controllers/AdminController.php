@@ -76,7 +76,7 @@ class AdminController extends Controller {
     public function actionDelete($id) {
         Yii::app()->user->changeLastActivity();
         $this->checkOut($id, Yii::app()->user->id);
-        $user = User::model()->findByPk($id);
+        $user = User::model()->findByPk($id, (Yii::app()->user->role == 'admin') ? "role = 'user'" : "");
         if ($user === null) {
             echo Yii::t('translation', 'user_not_found');
             Yii::app()->end();
@@ -99,7 +99,7 @@ class AdminController extends Controller {
     public function actionUpdate($id) {
         Yii::app()->user->changeLastActivity();
         $this->checkOut($id, Yii::app()->user->id);
-        $user = User::model()->findByPk($id);
+        $user = User::model()->findByPk($id, "role = 'user'");
         if ($user === null) {
             echo Yii::t('translation', 'user_not_found');
             Yii::app()->end();
