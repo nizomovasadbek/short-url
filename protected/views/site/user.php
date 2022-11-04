@@ -11,7 +11,7 @@ Hello <?php echo $user->username; ?>
     <br>
     <?php
         if(Yii::app()->user->role == 'admin' || Yii::app()->user->role == 'super'){
-            echo '<a href="/admin">Admin panel</a>';
+            echo '<a href="/admin">' . echo Yii::t("translation", 'admin_panel') . '</a>';
         }
     ?>
 </p>

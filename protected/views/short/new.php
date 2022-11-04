@@ -1,5 +1,5 @@
 <h1>
-    Create a new short link
+    <?php echo Yii::t("translation", 'create_new_short_link'); ?>
 </h1>
 
 <div class="form">
@@ -13,7 +13,7 @@
     </div>
 
     <div class="row">
-        <?php echo CHtml::submitButton('Create'); ?>
+        <?php echo CHtml::submitButton(Yii::t("translation", 'create')); ?>
     </div>
 
     <?php echo CHtml::endForm(); ?>

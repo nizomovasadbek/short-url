@@ -1,1 +1,1 @@
-<a href="/status/download/<?php echo $fileName; ?>">To download excel file</a>
+<a href="/status/download/<?php echo $fileName; ?>"><?php echo Yii::t("translation", "download_excel_file"); ?></a>
