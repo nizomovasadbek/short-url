@@ -158,8 +158,8 @@ class AdminController extends Controller {
             $obj_php_excel->getActiveSheet()
                     ->setCellValue("A{$coord}", $all->id)
                     ->setCellValue("B{$coord}", $all->username)
-                    ->setCellValue("C{$coord}", $all->last_activity)
-                    ->setCellValue("D{$coord}", $all->role);
+                    ->setCellValue("C{$coord}", $all->role)
+                    ->setCellValue("D{$coord}", $all->last_activity);
             $coord++;
         }
 
