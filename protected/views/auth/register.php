@@ -8,13 +8,13 @@
     <?php echo CHtml::errorSummary($model); ?>
 
     <div class="row">
-        <?php echo CHtml::activeLabel($model, 'Username'); ?>
-        <?php echo CHtml::activeTextField($model, Yii::t('translation', 'username')); ?>
+        <?php echo CHtml::activeLabel($model, Yii::t('translation', 'username')); ?>
+        <?php echo CHtml::activeTextField($model, 'username'); ?>
     </div>
 
     <div class="row">
-        <?php echo CHtml::activeLabel($model, 'Password'); ?>
-        <?php echo CHtml::activeTextField($model, Yii::t('translation', 'password')); ?>
+        <?php echo CHtml::activeLabel($model, Yii::t('translation', 'password')); ?>
+        <?php echo CHtml::activeTextField($model, 'password'); ?>
     </div>
 
     <div class="row">

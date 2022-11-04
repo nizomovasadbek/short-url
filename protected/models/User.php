@@ -41,13 +41,13 @@ class User extends CActiveRecord {
 
     public function attributeLabels() {
         return array(
-            'id' => Yii::t("translation", "id"),
-            'username' => Yii::t("translation", "username"),
-            'password' => Yii::t("translation", "password"),
-            'role' => Yii::t("translation", "role"),
-            'last_activity' => Yii::t("translation", "last_activity"),
-            'create_time' => Yii::t("translation", "create_time"),
-            'update_time' => Yii::t("translation", "update_time"),
+            'id' => "id",
+            'username' => "username",
+            'password' => "password",
+            'role' => "role",
+            'last_activity' => "last_activity",
+            'create_time' => "create_time",
+            'update_time' => "update_time"
         );
     }
 
@@ -71,9 +71,9 @@ class User extends CActiveRecord {
         return parent::model($className);
     }
 
-    public function beforeSave(){
-    	$this->password = md5($this->password);
-    	return parent::beforeSave();
+    public function beforeSave() {
+        $this->password = md5($this->password);
+        return parent::beforeSave();
     }
 
 }

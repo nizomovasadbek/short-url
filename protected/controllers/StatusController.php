@@ -38,10 +38,11 @@ class StatusController extends Controller {
         $file = File::model()->find($criteria);
         $filePath = $file->path;
         if (!file_exists($filePath)) {
-            echo "File doesn't exist or deleted<br>";
+            echo Yii::t('translation', 'file_doesnt_exist_or_deleted');
             Yii::app()->end();
         }
-        Yii::app()->getRequest()->sendFile("report.xlsx", @file_get_contents($filePath));
+        $report = Yii::t('translation', 'report');
+        Yii::app()->getRequest()->sendFile("{$report}.xlsx", @file_get_contents($filePath));
         Yii::app()->end();
     }
 
