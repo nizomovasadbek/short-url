@@ -1,4 +1,4 @@
-<h1><?php echo Yii::t() . ' ' . $user->username . ' ' . Yii::t('translation', 'role'); ?></h1>
+<h1><?php echo Yii::t('translation', 'update') . ' ' . $user->username . ' ' . Yii::t('translation', 'role'); ?></h1>
 <div class="form">
 
     <?php echo CHtml::beginForm(); ?>
