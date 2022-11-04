@@ -44,7 +44,7 @@ class AdminController extends Controller {
     public function actionShow($id) {
         Yii::app()->user->changeLastActivity();
         if (Yii::app()->user->id == $id) {
-            echo "You can't delete yourself:)";
+            echo Yii::t('translation', 'you_cant_delete_yourself');
             Yii::app()->end();
         }
         $user = User::model()->findByPk($id);
@@ -78,14 +78,14 @@ class AdminController extends Controller {
         $this->checkOut($id, Yii::app()->user->id);
         $user = User::model()->findByPk($id);
         if ($user === null) {
-            echo "User not found";
+            echo Yii::t('translation', 'user_not_found');
             Yii::app()->end();
         }
         $criteria = new CDbCriteria();
         $criteria->compare('user_id', $user->id);
         $link = Link::model()->findAll($criteria);
         if ($link === null) {
-            echo "given specific user didn't create any short urls";
+            echo Yii::t('translation', 'given_specific_user_didnt_create_any_short_urls');
             Yii::app()->end();
         }
         foreach ($link as $l) {
@@ -101,7 +101,7 @@ class AdminController extends Controller {
         $this->checkOut($id, Yii::app()->user->id);
         $user = User::model()->findByPk($id);
         if ($user === null) {
-            echo "User not found";
+            echo Yii::t('translation', 'user_not_found');
             Yii::app()->end();
         }
         $model = new UpdateUserForm();
@@ -137,16 +137,16 @@ class AdminController extends Controller {
         $obj_php_excel = new PHPExcel();
         $obj_php_excel->getProperties()->setCreator("Shorturl (C)")
                 ->setLastModifiedBy('Shorturl (C)')
-                ->setTitle('Users\' data')
-                ->setSubject("Informations about Users")
-                ->setDescription("Excel file downloaded by {$user->username}")
-                ->setKeywords('Office')
-                ->setCategory('Datas about users');
+                ->setTitle(Yii::t('translation', 'users_data'))
+                ->setSubject(Yii::t('translation', 'information_about_users'))
+                ->setDescription(Yii::t('translation', 'excel_file_downloaded_by') . "{$user->username}")
+                ->setKeywords(Yii::t('translation', 'office'))
+                ->setCategory(Yii::t('translation', 'information_about_users'));
         $obj_php_excel->setActiveSheetIndex(0)
-                ->setCellValue('A1', 'Id')
-                ->setCellValue('B1', 'Username')
-                ->setCellValue('C1', 'Last activity')
-                ->setCellValue('D1', 'Role');
+                ->setCellValue('A1', 'ID')
+                ->setCellValue('B1', Yii::t('translation', 'username'))
+                ->setCellValue('C1', Yii::t('translation', 'role'))
+                ->setCellValue('D1', Yii::t('translation', 'last_activity'));
 
         $criteria = new CDbCriteria();
         if (Yii::app()->user->role == 'admin') {
