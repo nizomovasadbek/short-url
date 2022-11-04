@@ -1,34 +1,32 @@
 <table>
     <tr>
         <th>
-            Username
+            <?php echo Yii::t('translation', 'username'); ?>
         </th>
         <th>
-            Role
+            <?php echo Yii::t('translation', 'role'); ?>
         </th>
         <th>
-            Last Activity
+            <?php echo Yii::t('translation', 'last_activity'); ?>
         </th>
     </tr>
-<?php
+    <?php foreach ($users as $user) { ?>
 
-foreach($users as $user) { ?>
+        <tr>
+            <th>
+                <a href="/admin/show/<?php echo $user->id; ?>"><?php echo $user->username; ?></a>
+            </th>
+            <th>
+    <?php echo $user->role; ?>
+            </th>
+            <th>
+    <?php echo $user->last_activity; ?>
+            </th>
+        </tr>
 
-    <tr>
-        <th>
-            <a href="/admin/show/<?php echo $user->id; ?>"><?php echo $user->username; ?></a>
-        </th>
-        <th>
-            <?php echo $user->role; ?>
-        </th>
-        <th>
-            <?php echo $user->last_activity; ?>
-        </th>
-    </tr>
-    
- <?php  } ?>
+<?php } ?>
 </table>
 
 <p>
-    <a href="/admin/import">Import table</a>
+    <a href="/admin/import"><?php echo Yii::t('translation', 'import_table'); ?></a>
 </p>
