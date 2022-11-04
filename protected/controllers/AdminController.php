@@ -163,7 +163,7 @@ class AdminController extends Controller {
             $coord++;
         }
 
-        $obj_php_excel->getActiveSheet()->setTitle('Shorturl users');
+        $obj_php_excel->getActiveSheet()->setTitle(Yii::t('translation', 'short_url_users'));
         $obj_php_excel->setActiveSheetIndex(0);
         //write in Excel 2007 format
         $objWriter = PHPExcel_IOFactory::createWriter($obj_php_excel, 'Excel2007');
