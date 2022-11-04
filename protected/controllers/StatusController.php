@@ -42,8 +42,6 @@ class StatusController extends Controller {
             Yii::app()->end();
         }
         Yii::app()->getRequest()->sendFile("report.xlsx", @file_get_contents($filePath));
-
-        echo "Report downloaded<br>";
         Yii::app()->end();
     }
 
