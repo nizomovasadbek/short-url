@@ -10,7 +10,7 @@ class AdminController extends Controller {
             Yii::app()->end();
         }
         if ($user1->role == 'admin' && $user2->role == 'admin') {
-            echo "You can't do update <b>{$user1->username}</b>";
+            echo Yii::t("translation", "you_cant_update") . " {$user1->username}";
             Yii::app()->end();
         }
     }

@@ -1,4 +1,4 @@
-<h1>Error occured</h1>
+<h1><?php echo Yii::t("translation", "error"); ?></h1>
 <a href="/">
-    Home
+    <?php echo Yii::t("translation", "home"); ?>
 </a>
