@@ -32,13 +32,13 @@ class Translation extends CActiveRecord {
 
     public function attributeLabels() {
         return array(
-            'id' => "id",
-            'title' => "title",
-            'title_uz' => "title_uz",
-            'title_ru' => "title_ru",
-            'title_en' => "title_en",
-            'create_time' => "create_time",
-            'update_time' => "update_time"
+            'id' => Yii::t("translation", "id"),
+            'title' => Yii::t("translation", "title"),
+            'title_uz' => Yii::t("translation", "title_uz"),
+            'title_ru' => Yii::t("translation", "title_ru"),
+            'title_en' => Yii::t("translation", "title_en"),
+            'create_time' => Yii::t("translation", "create_time"),
+            'update_time' => Yii::t("translation", "update_time"),
         );
     }
 

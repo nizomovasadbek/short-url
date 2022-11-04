@@ -37,12 +37,12 @@ class Link extends CActiveRecord {
 
     public function attributeLabels() {
         return array(
-            'id' => "id",
-            'user_id' => "user",
-            'url' => "url",
-            'short_url' => "short_url",
-            'create_time' => "create_time",
-            'update_time' => "update_time",
+            'id' => Yii::t("translation", "id"),
+            'user_id' => Yii::t("translation", "user"),
+            'url' => Yii::t("translation", "url"),
+            'short_url' => Yii::t("translation", "short_url"),
+            'create_time' => Yii::t("translation", "create_time"),
+            'update_time' => Yii::t("translation", "update_time"),
         );
     }
 

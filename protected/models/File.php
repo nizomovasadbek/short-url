@@ -36,12 +36,12 @@ class File extends CActiveRecord {
 
     public function attributeLabels() {
         return array(
-            'id' => "id",
-            'user_id' => "user",
-            'name' => "name",
-            'path' => "path",
-            'create_time' => "create_time",
-            'update_time' => "update_time"
+            'id' => Yii::t("translation", "id"),
+            'user_id' => Yii::t("translation", "user"),
+            'name' => Yii::t("translation", "name"),
+            'path' => Yii::t("translation", "path"),
+            'create_time' => Yii::t("translation", "create_time"),
+            'update_time' => Yii::t("translation", "update_time"),
         );
     }
 
