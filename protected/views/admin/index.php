@@ -17,14 +17,14 @@
                 <a href="/admin/show/<?php echo $user->id; ?>"><?php echo $user->username; ?></a>
             </th>
             <th>
-    <?php echo $user->role; ?>
+                <?php echo $user->role; ?>
             </th>
             <th>
-    <?php echo $user->last_activity; ?>
+                <?php echo $user->last_activity; ?>
             </th>
         </tr>
 
-<?php } ?>
+    <?php } ?>
 </table>
 
 <p>
