@@ -30,27 +30,27 @@ class MyController extends Controller {
 
         $obj = new PHPExcel();
         $obj->getProperties()->setCreator('Shorturl (C)')
-            ->setLastModifiedBy('Shorturl')
-            ->setSubject('My short links')
-            ->setKeywords('Office')
-            ->setDescription('Short url excel file')
-            ->setCategory('My links');
+                ->setLastModifiedBy('Shorturl')
+                ->setSubject(Yii::t('translation', 'my_links'))
+                ->setKeywords(Yii::t('translation', 'office'))
+                ->setDescription(Yii::t('translation', 'short_url_excel_file'))
+                ->setCategory(Yii::t('translation', 'my_links'));
 
         $obj->setActiveSheetIndex(0)
-            ->setCellValue('A1', 'Url')
-            ->setCellValue('B1', 'Short url')
-            ->setCellValue('C1', 'Created time');
+                ->setCellValue('A1', 'Url')
+                ->setCellValue('B1', Yii::t('translation', 'shorturl'))
+                ->setCellValue('C1', Yii::t('translation', 'create_time'));
 
         $coord = 2;
-        foreach($links as $link){
+        foreach ($links as $link) {
             $obj->getActiveSheet()
-                ->setCellValue("A{$coord}", $link->url)
-                ->setCellValue("B{$coord}", $link->short_url)
-                ->setCellValue("C{$coord}", "{$link->create_time}");
+                    ->setCellValue("A{$coord}", $link->url)
+                    ->setCellValue("B{$coord}", $link->short_url)
+                    ->setCellValue("C{$coord}", "{$link->create_time}");
             $coord++;
         }
 
-        $obj->getActiveSheet()->setTitle('My links');
+        $obj->getActiveSheet()->setTitle(Yii::t('translation', 'my_links'));
         $obj->setActiveSheetIndex(0);
 
         $objWriter = PHPExcel_IOFactory::createWriter($obj, 'Excel2007');
@@ -63,11 +63,11 @@ class MyController extends Controller {
         $file->save();
         $objWriter->save($file->path);
 
-        $this->render('index', ['links'=>$links, 'fileName' => $fileName]);
+        $this->render('index', ['links' => $links, 'fileName' => $fileName]);
         Yii::app()->end();
     }
 
-    public function actionShow($id){
+    public function actionShow($id) {
         $link = Link::model()->findByPk($id);
         $arr = [
             'id' => $link->id,
