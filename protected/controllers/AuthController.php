@@ -49,7 +49,7 @@ class AuthController extends Controller {
                     $user = User::model()->findByPk(Yii::app()->user->id);
                     Yii::app()->user->changeLastActivity();
                 }
-                $this->redirect('/');
+                $this->redirect(Yii::app()->user->returnUrl);
                 Yii::app()->end();
             }
         }
