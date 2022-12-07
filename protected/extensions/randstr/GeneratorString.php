@@ -10,7 +10,7 @@ class GeneratorString {
         $randomCharacters = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
         $str = '';
         for($i = 0; $i < $len; $i++){
-            $str .= $randomCharacters[rand(0, strlen($randomCharacters))];
+            $str = $str . $randomCharacters[rand(0, strlen($randomCharacters)-1)];
         }
         
         return $str;

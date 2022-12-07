@@ -43,11 +43,11 @@ return array(
 //            'class' => 'ext.yii-multilanguage.MLUrlManager',
             'urlFormat' => 'path',
             'showScriptName' => false,
-//            'languages' => array(
-//                'uz',
-//                'ru',
-//                'en'
-//            ),
+ /*           'languages' => array(
+                'uz'
+                'ru',
+                'en'
+ ),*/
             'rules' => array(
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 'short/<url:\w+>' => 'short/view',

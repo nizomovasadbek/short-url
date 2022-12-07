@@ -28,7 +28,8 @@ class ShortController extends Controller {
         if (!Yii::app()->user->isGuest)
             Yii::app()->user->changeLastActivity();
         $criteria = new CDbCriteria();
-        $short_url = 'https://' . $_SERVER['HTTP_HOST'] . '/short/' . $url;
+	$short_url = 'http://' . $_SERVER['HTTP_HOST'] . '/short/' . $url;
+	Yii::log("Redirecting to $short_url", CLogger::LEVEL_ERROR);
         $criteria->compare('short_url', $short_url);
         $link = Link::model()->find($criteria);
         if ($link === null) {
@@ -50,7 +51,7 @@ class ShortController extends Controller {
             $model->attributes = $_POST['CreateUrlForm'];
             $link->url = $model->url;
             $link->user_id = $user->id;
-            $short_url = 'https://' . $_SERVER['HTTP_HOST'] . '/short/' . Yii::app()->randstr->getRandomString();
+            $short_url = 'http://' . $_SERVER['HTTP_HOST'] . '/short/' . Yii::app()->randstr->getRandomString();
             $link->short_url = $short_url;
             $link->create_time = $link->update_time = date('Y-m-d H:i:s');
             if ($link->save()) {
